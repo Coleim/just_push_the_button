@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbe0xlp5q2n4n"]
+
+[ext_resource type="Texture2D" uid="uid://es102k0xery0" path="res://assets/iron_bg.jpg" id="1_c7cu2"]
+[ext_resource type="Script" path="res://game/game.gd" id="1_vk8mu"]
+[ext_resource type="Texture2D" uid="uid://buhyhoe2ieyb4" path="res://assets/button_green.png" id="2_v5r4e"]
+[ext_resource type="FontFile" uid="uid://cfsn1w2rai8ak" path="res://assets/ticking-timebomb-bb.regular.ttf" id="3_8wcr0"]
+[ext_resource type="FontFile" uid="uid://f4ptrvo3cenb" path="res://assets/scoreboard.ttf" id="4_4u3b0"]
+[ext_resource type="Texture2D" uid="uid://ceonpg422fu2c" path="res://assets/button_green_pressed.png" id="4_h2q2o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfm7f"]
+radius = 195.003
+
+[sub_resource type="Theme" id="Theme_t4cof"]
+default_font = ExtResource("3_8wcr0")
+default_font_size = 300
+
+[sub_resource type="Theme" id="Theme_nx7l1"]
+default_font = ExtResource("4_4u3b0")
+default_font_size = 200
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_vk8mu")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(377, 647)
+rotation = 1.5708
+texture = ExtResource("1_c7cu2")
+
+[node name="Sprite2D" type="Area2D" parent="."]
+visible = false
+position = Vector2(356, 628)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-5, 49)
+texture = ExtResource("2_v5r4e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+position = Vector2(9, -23)
+shape = SubResource("CircleShape2D_dfm7f")
+
+[node name="Button" type="TextureButton" parent="."]
+offset_left = 105.0
+offset_top = 356.0
+offset_right = 617.0
+offset_bottom = 868.0
+texture_normal = ExtResource("2_v5r4e")
+texture_pressed = ExtResource("4_h2q2o")
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_right = 722.0
+offset_bottom = 281.0
+theme = SubResource("Theme_t4cof")
+theme_override_colors/font_color = Color(1, 0.164706, 0, 0.92549)
+text = "00:30"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_top = 1047.0
+offset_right = 723.0
+offset_bottom = 1278.0
+theme = SubResource("Theme_nx7l1")
+theme_override_colors/font_color = Color(0.176471, 1, 0.247059, 1)
+text = "000012"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
